@@ -1,4 +1,4 @@
-package LojaVirtual;
+package Loja;
 
 public class Cliente {
 	String cpf;
