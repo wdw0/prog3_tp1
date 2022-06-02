@@ -1,4 +1,4 @@
-package LojaVirtual;
+package Loja;
 
 public class ItemCompra {
 	Produto produto;
