@@ -1,4 +1,4 @@
-package LojaVirtual;
+package Loja;
 
 import java.util.ArrayList;
 
