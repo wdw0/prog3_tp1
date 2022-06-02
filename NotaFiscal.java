@@ -20,11 +20,16 @@ public class NotaFiscal {
 	}
 	
 	void adicionarItem(ItemCompra item) {
-		
+		this.itens.add(item);
 	}
 	
 	void custoTotal() {
+		double custoTotal = 0;
 		
+		for(ItemCompra item : this.itens)
+		    custoTotal += item.custoTotal();
+		
+		return custoTotal;
 	}
 	
 }
