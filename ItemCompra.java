@@ -17,6 +17,6 @@ public class ItemCompra {
 	
 	double custoTotal() {
 		
-		return
+		return this.quantidade * this.custoUnidade;
 	}
 }
