@@ -27,7 +27,7 @@ public class Produto {
 	}
 	
 	double custo() {
-		return preco;
+		return preco * desconto;
 	}
 	
 	void atualizarEstoque(int qtd) {
