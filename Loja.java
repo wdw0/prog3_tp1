@@ -79,4 +79,35 @@ public class Loja {
 		
 		s.close();
 	}
+	
+	void listarClientes() {
+		for(int i=0; i < clientes.size(); i++)
+        {
+            System.out.println(clientes.get(i));
+        }		
+	}
+	
+	void listarProdutos() {
+		for(int i=0; i < produtos.size(); i++)
+        {
+            System.out.println(produtos.get(i));
+        }
+	}
+	
+	void listarNotas() {
+		for(int i=0; i < notas.size(); i++)
+        {
+            System.out.println(notas.get(i));
+        }
+	}
+	
+	Cliente buscarCliente(String cpf) {}
+	Produto buscarProduto(int codigo) {}
+	NotaFiscal buscarNota(int codigo) {}
+	void removerCliente(String cpf) {}
+	void removerProduto(int codigo) {}
+	void removerNota(int codigo) {}
+	void adicionarItemNota() {}
+	void exibirRelatorio() {}
+	void listarItensCategoria() {}
 }
