@@ -1,4 +1,4 @@
-package Loja;
+package LojaVirtual;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ public class Loja {
 	ArrayList <Cliente> clientes;
 	ArrayList <NotaFiscal> notas;
 	
-	void CadastrarCliente() {
+	void cadastrarCliente() {
 		Scanner s = new Scanner(System.in);
 		 
 		System.out.println("Digite os dados do cliente:" + "\n Nome:");
@@ -26,7 +26,7 @@ public class Loja {
 		s.close();
 	}
 	
-	void CadastrarProduto() {
+	void cadastrarProduto() {
 		Scanner s = new Scanner(System.in);
 		 
 		System.out.println("Digite os dados do produto:" + "\n Codigo:");
@@ -53,29 +53,24 @@ public class Loja {
 		s.close();
 	}
 	
-	void CadastrarNota() {
+	void cadastrarNota() {
 		Scanner s = new Scanner(System.in);
 		 
 		System.out.println("Digite os dados da nota:" + "\n Codigo:");
 		int codigo = s.nextInt();
 		
-		System.out.println("Nome: ");
-		String nome = s.nextLine();
-	
-		System.out.println("Preco: ");
-		double preco = s.nextDouble();
+		String cpf = s.nextLine();
+		Cliente c = buscarCliente(cpf);
 		
-		System.out.println("Categoria: ");
-		String categoria = s.nextLine();
+		if(c == null){
+			cadastrarCliente();
+		}
 		
-		System.out.println("Desconto: ");
-		double desconto = s.nextDouble();
+		System.out.println("Método de Pagamento: ");
+		String pagamento = s.nextLine();
 		
-		System.out.println("Estoque: ");
-		int estoque = s.nextInt();
-		
-		Produto p = new Produto(codigo, nome, preco, categoria, desconto, estoque);
-		this.produtos.add(p);
+		NotaFiscal n = new NotaFiscal(codigo, c, pagamento);
+		this.notas.add(n);
 		
 		s.close();
 	}
@@ -101,8 +96,31 @@ public class Loja {
         }
 	}
 	
-	Cliente buscarCliente(String cpf) {}
-	Produto buscarProduto(int codigo) {}
+	Cliente buscarCliente(String cpf) {
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Digite as informacoes do cliente que esta buscando: " + "\n Nome: ");
+		String nome = s.nextLine();
+		
+		System.out.println("CPF: ");
+		String c = s.nextLine();
+		
+		System.out.println("telefone: ");
+		String tel = s.nextLine();
+		
+		if (cpf == c) {
+			Cliente cli = new Cliente(nome, c, tel);
+			return cli;
+		}
+		
+		else {
+			System.out.println("Esse cliente não existe");
+			return null;
+		}
+		
+	}
+	Produto buscarProduto(int codigo) {
+		return null;}
 	NotaFiscal buscarNota(int codigo) {}
 	void removerCliente(String cpf) {}
 	void removerProduto(int codigo) {}
