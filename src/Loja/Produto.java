@@ -55,6 +55,10 @@ public class Produto {
             System.out.println("Não é possível definir um preço negativo ou igual a zero");
         }
     }
+    
+    public int getCod() {
+    	return codigo;
+    }
 
     @Override
     public String toString() {
