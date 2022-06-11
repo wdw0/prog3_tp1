@@ -6,21 +6,6 @@ public class App {
 	  public static void main(String[] args) {
 		  	Loja l = new Loja();       
 	        menu(l);
-	        
-	        //l.cadastrarCliente();	        
-	        //l.cadastrarCliente();	   
-	        //l.listarClientes();
-	        
-	        //l.cadastrarProduto();
-	        //Produto p = new Produto(1, "agua", 10.0 , "bebida", 0.1 , 10);
-	        //ItemCompra i = new ItemCompra(p, 1);
-	        //System.out.println(i);
-	        //l.cadastrarProduto();
-	        //l.listarProdutos();
-	        
-	        //l.cadastrarNota();
-	        //l.cadastrarNota(); 
-	        //l.listarNotas();
 	  }
 	  
 	  public static void menu(Loja l) {
@@ -79,32 +64,32 @@ public class App {
 		 case 3:
 			 System.out.println("O que deseja excluir?\n1- Excluir Cliente\n2- Excluir Produto\n3- Excluir Nota\n4- Retornar ao menu\n");
 			 aux = s.nextInt();
-			 int remI;
-			 String remS;
-			 if(aux == 1) {
+			 switch(aux) {
+			 case 1:
 				 System.out.println("Insira o cpf do cliente que deseja excluir: ");
-				 remS = s.nextLine();
-				 l.removerCliente(remS);
+				 s.nextLine();
+				 String cpf = s.nextLine();
+				 l.removerCliente(cpf);
 				 menu(l);
-			 }
-			 else if(aux == 2){
+				 break;
+			 case 2:
 				 System.out.println("Insira o codigo do produto que deseja excluir: ");
-				 remI = s.nextInt();
-				 l.removerProduto(remI);
+				 int cod = s.nextInt();
+				 l.removerProduto(cod);
 				 menu(l);
-			 }
-			 else if(aux == 3){
+				 break;
+			 case 3:
 				 System.out.println("Insira o codigo da nota que deseja excluir: ");
-				 remI = s.nextInt();
-				 l.removerNota(remI);
+				 int codn = s.nextInt();
+				 l.removerNota(codn);
 				 menu(l);
-			 }
-			 else if(aux == 4) {
+				 break;
+			 case 4:
 				 menu(l);
-			 }
-			 else {
+				 break;
+			 default:
 				 System.out.println("Opcao invalida, retornando ao Menu");
-				 menu(l);
+				 menu(l);			 
 			 }
 			 break;
 		 case 4:
@@ -123,9 +108,6 @@ public class App {
 		 		 	  
 	  }
 }
-
-
-
 
 
 
