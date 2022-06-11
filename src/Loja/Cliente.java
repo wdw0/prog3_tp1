@@ -14,4 +14,8 @@ public class Cliente {
     public String toString() {
         return "Cliente(" + nome + ", cpf: " + cpf + ", tel: " + telefone + ")";
     }
+    
+    public String getCpf() {
+    	return cpf;
+    }
 }
