@@ -35,4 +35,7 @@ public class NotaFiscal {
         return custo;
     }
 	
+    public int getCod() {
+    	return codigo;
+    }
 }
