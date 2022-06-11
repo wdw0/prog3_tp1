@@ -107,24 +107,50 @@ public class Loja {
         }
     }
 
-    Cliente buscarCliente(String cpf) {
-    	String nome = "gabriel";
-    	String tel = "123";
-    	
-    	Cliente c = new Cliente (cpf, nome, tel);
-
-       return c;
-    }
-
-
-
+    Cliente buscarCliente(String cpf) { 
+    	for (Cliente cliente : clientes) {
+    	        if (cliente.getCpf().equals(cpf)) {
+    	            return cliente;
+    	        }
+    	    }
+    	    return null;
+     }
+       
     Produto buscarProduto(int codigo) {
-        return null;}
-    //NotaFiscal buscarNota(int codigo) {}
-    void removerCliente(String cpf) {}
-    void removerProduto(int codigo) {}
-    void removerNota(int codigo) {}
+    	for (Produto produto : produtos) {
+	        if (produto.getCod() == codigo) {
+	            return produto;
+	        }
+	    }
+	    return null;    	
+     }
+    
+    NotaFiscal buscarNota(int codigo) {
+    	for (NotaFiscal nota : notas) {
+	        if (nota.getCod() == codigo) {
+	            return nota;
+	        }
+	    }
+	    return null; 
+    }
+    void removerCliente(String cpf) {
+    	Cliente excluido = buscarCliente(cpf);
+    	clientes.remove(excluido);
+    }
+    void removerProduto(int codigo) {
+    	Produto excluido = buscarProduto(codigo);
+    	produtos.remove(excluido);
+    }
+    
+    void removerNota(int codigo) {
+    	NotaFiscal excluida = buscarNota(codigo);
+    	notas.remove(excluida);
+    }
+    
     void adicionarItemNota() {}
     void exibirRelatorio() {}
     void listarItensCategoria() {}
 }
+
+
+
