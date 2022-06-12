@@ -75,7 +75,7 @@ public class App {
                     menu(l);
                 } else if (aux == 3) {
                     l.listarNotas();
-                    System.out.println("Deseja modificar alguma nota fiscal?\n1-sim\n2-nao");
+                    System.out.println("Deseja adicionar um produto a alguma nota fiscal?\n1-sim\n2-nao");
                     int aux1 = s.nextInt();
                     if (aux1 == 1){
                         l.adicionarItemNota();
