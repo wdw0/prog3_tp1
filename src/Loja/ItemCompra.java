@@ -12,7 +12,7 @@ public class ItemCompra {
     }
 
     public String toString() {
-        return "Item Comprado (" + produto + ", qtd: " + quantidade + ", custo: " + custoUnidade + ")";
+        return "Item Comprado (" + produto + ", qtd = " + quantidade + ", custo = " + custoUnidade + ")";
     }
 
     double custoTotal() {

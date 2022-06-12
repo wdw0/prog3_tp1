@@ -27,8 +27,8 @@ public class Produto {
     }
 
     double custo() {
-    	double descCalculado = preco * desconto;
-    	return preco - descCalculado;
+        double descCalculado = preco * desconto;
+        return preco - descCalculado;
     }
 
     void atualizarEstoque(int qtd) {
@@ -40,11 +40,11 @@ public class Produto {
         }
     }
     void atualizarDesconto(double v) {
-        if(v >= 0) {
+        if(v >= 0 && v<1) {
             desconto = v;
         }
         else {
-            System.out.println("Não é possível aplicar um desconto negativo");
+            System.out.println("Quantidade de desconto inválida");
         }
     }
     void atualizarPreco(double v) {
@@ -55,14 +55,17 @@ public class Produto {
             System.out.println("Não é possível definir um preço negativo ou igual a zero");
         }
     }
-    
-    public int getCod() {
-    	return codigo;
+
+    public int getCod(){
+        return codigo;
     }
 
-    @Override
     public String toString() {
-        return "Produto [codigo: " + codigo + ", nome: " + nome + ", preco: " + preco + ", categoria: " + categoria
-                + ", desconto:" + desconto + ", estoque: " + estoque + "]";
+        return "Produto [codigo= " + codigo + ", nome= " + nome + ", preco= " + preco + ", categoria= " + categoria
+                + ", desconto=" + desconto + ", estoque=" + estoque + "]";
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 }

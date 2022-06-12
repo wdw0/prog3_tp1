@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Loja {
-	ArrayList <Produto> produtos;
+    ArrayList <Produto> produtos;
     ArrayList <Cliente> clientes;
     ArrayList <NotaFiscal> notas;
-    
-    public Loja() {
-    	clientes = new ArrayList<Cliente>();
-    	produtos = new ArrayList<Produto>();
-    	notas = new ArrayList<NotaFiscal>();
+
+    public Loja(){
+        produtos = new ArrayList<>();
+        clientes = new ArrayList<>();
+        notas = new ArrayList<>();
     }
-    
+
     void cadastrarCliente() {
         Scanner s = new Scanner(System.in);
 
@@ -32,7 +32,6 @@ public class Loja {
 
     void cadastrarProduto() {
         Scanner s = new Scanner(System.in);
-       
 
         System.out.println("Digite os dados do produto:" + "\n Codigo:");
         int codigo = s.nextInt();
@@ -56,25 +55,24 @@ public class Loja {
 
         Produto p = new Produto(codigo, nome, preco, categoria, desconto, estoque);
         this.produtos.add(p);
-
     }
 
     void cadastrarNota() {
-        @SuppressWarnings("resource")
-		Scanner s = new Scanner(System.in);
-        
 
-        System.out.println("Digite os dados da nota: " + "\nCodigo:");
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Digite os dados da nota:" + "\n Codigo:");
         int codigo = s.nextInt();
 
         System.out.println("CPF do cliente que está buscando:");
         s.nextLine();
         String cpf = s.nextLine();
-        
         Cliente c = buscarCliente(cpf);
 
         if(c == null){
+            System.out.println("Esse cliente não existe");
             cadastrarCliente();
+            c = buscarCliente(cpf);
         }
 
         System.out.println("Método de Pagamento: ");
@@ -82,75 +80,158 @@ public class Loja {
 
         NotaFiscal n = new NotaFiscal(codigo, c, pagamento);
         this.notas.add(n);
-
-       
     }
 
     void listarClientes() {
-        for(int i=0; i < clientes.size(); i++)
-        {
-            System.out.println(clientes.get(i));
+
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.printf("%20s %20s %20s", "CPF", "NOME", "TELEFONE");
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------");
+        for(Cliente cliente: clientes){
+            System.out.format("%20s %20s %20s", cliente.getCpf(), cliente.getNome(), cliente.getTelefone());
+            System.out.println();
+        }
+        System.out.println("-----------------------------------------------------------------------------");
+
+        if (clientes.isEmpty()){
+            System.out.println("Não existem clientes cadastrados");
         }
     }
 
-    void listarProdutos() {
+        void listarProdutos() {
         for(int i=0; i < produtos.size(); i++)
         {
             System.out.println(produtos.get(i));
+        }
+
+        if (produtos.isEmpty()){
+            System.out.println("Não existem produtos cadastrados");
         }
     }
 
     void listarNotas() {
         for(int i=0; i < notas.size(); i++)
         {
-            System.out.println(notas.get(i));
+            NotaFiscal aux = notas.get(i);
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.printf("%10s %10s %10s %10s %10s", "CODIGO NOTA", "NOME PRODUTO", "PREÇO UNITARIO", "PREÇO TOTAL PRODUTO", "PREÇO TOTAL NOTA");
+            System.out.println("-----------------------------------------------------------------------------");
+            for(int j=0; j < notas.size(); j++)
+            {
+                System.out.println(notas.get(j));
+            }
+            System.out.println("-----------------------------------------------------------------------------");
+        }
+
+        if (notas.isEmpty()){
+            System.out.println("Não existem notas fiscais cadastradas");
         }
     }
 
-    Cliente buscarCliente(String cpf) { 
-    	for (Cliente cliente : clientes) {
-    	        if (cliente.getCpf().equals(cpf)) {
-    	            return cliente;
-    	        }
-    	    }
-    	    return null;
-     }
-       
+    Cliente buscarCliente(String cpf) {
+        for (Cliente cliente : clientes){
+            if (cliente.getCpf().equals(cpf)) {
+                return cliente;
+            }
+        }
+
+        return null;
+
+    }
     Produto buscarProduto(int codigo) {
-    	for (Produto produto : produtos) {
-	        if (produto.getCod() == codigo) {
-	            return produto;
-	        }
-	    }
-	    return null;    	
-     }
-    
+        for (Produto produto : produtos) {
+            if (produto.getCod() == codigo) {
+                return produto;
+            }
+        }
+        return null;
+    }
+
     NotaFiscal buscarNota(int codigo) {
-    	for (NotaFiscal nota : notas) {
-	        if (nota.getCod() == codigo) {
-	            return nota;
-	        }
-	    }
-	    return null; 
+        for (NotaFiscal nota : notas) {
+            if (nota.getCod() == codigo) {
+                return nota;
+            }
+        }
+        return null;
     }
     void removerCliente(String cpf) {
-    	Cliente excluido = buscarCliente(cpf);
-    	clientes.remove(excluido);
+        Cliente excluido = buscarCliente(cpf);
+        clientes.remove(excluido);
     }
     void removerProduto(int codigo) {
-    	Produto excluido = buscarProduto(codigo);
-    	produtos.remove(excluido);
+        Produto excluido = buscarProduto(codigo);
+        produtos.remove(excluido);
     }
-    
+
     void removerNota(int codigo) {
-    	NotaFiscal excluida = buscarNota(codigo);
-    	notas.remove(excluida);
+        NotaFiscal excluida = buscarNota(codigo);
+        notas.remove(excluida);
     }
-    
-    void adicionarItemNota() {}
-    void exibirRelatorio() {}
-    void listarItensCategoria() {}
+
+    void adicionarItemNota() {
+        Scanner s = new Scanner (System.in);
+
+        System.out.println("Codigo do produto:");
+        int codp = s.nextInt();
+        System.out.println(buscarProduto(codp));
+
+        Produto p = buscarProduto(codp);
+
+        if (p == null){
+            System.out.println("Esse produto nao existe.");
+            cadastrarProduto();
+            p = buscarProduto(codp);
+        }
+
+        System.out.println("Codigo da nota:");
+        int codn = s.nextInt();
+
+        System.out.println("Quantidade de itens que deseja adicionar:");
+        int qtd = s.nextInt();
+
+        ItemCompra item = new ItemCompra(buscarProduto(codp), qtd);
+        System.out.println(item.produto);
+        System.out.println(item.custoUnidade);
+
+        for (int i = 0; i < notas.size(); i++){
+            NotaFiscal aux = notas.get(i);
+            if (aux.codigo == codn){
+                aux.itens.add(item);
+
+                qtd = p.estoque;
+                qtd = qtd - 1;
+                p.atualizarEstoque(qtd);
+            }
+        }
+
+
+    }
+    void exibirRelatorio() {
+        System.out.println("Quantidade de produtos na loja: " + produtos.size());
+        System.out.println("Quantidade de usuários cadastrados na loja: " + clientes.size());
+        System.out.println("Quantidade de compras feitas na loja: " + notas.size());
+
+        double total = 0;
+        System.out.println("Valor total de todas as compras (jeito 1):");
+        for(NotaFiscal nota : notas){
+
+            System.out.println(nota.custoTotal());
+            total += nota.custoTotal();
+
+        }
+        System.out.println("Valor total de todas as compras (jeito 2):" + total);
+    }
+    void listarItensCategoria() {
+        Scanner s = new Scanner (System.in);
+        String categoria = s.nextLine();
+
+        for (Produto produto : produtos){
+            if(produto.categoria == categoria){
+                System.out.println(produto.nome);
+            }
+        }
+    }
 }
-
-
 

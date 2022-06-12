@@ -11,11 +11,19 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public String toString() {
-        return "Cliente(" + nome + ", cpf: " + cpf + ", tel: " + telefone + ")";
-    }
-    
-    public String getCpf() {
+    public String getCpf () {
     	return cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String toString() {
+        return "Cliente(" + nome + ", cpf=" + cpf + ", tel=" + telefone + ")";
     }
 }

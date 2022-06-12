@@ -18,7 +18,7 @@ public class NotaFiscal {
     }
 
     public String toString() {
-        return "Nota Fiscal (" + codigo + ", comprador: " + comprador + ", data:" + data + ", pagamento:" + metodoPagamento +")";
+        return "Nota Fiscal (" + codigo + ", comprador= " + comprador + ", data= " + data + ", pagamento= " + metodoPagamento + "Produto" + itens +")";
     }
 
     void adicionarItem(ItemCompra item) {
@@ -34,8 +34,12 @@ public class NotaFiscal {
 
         return custo;
     }
-	
-    public int getCod() {
-    	return codigo;
+
+    public int getCod(){
+        return codigo;
+    }
+
+    public ArrayList getItens(){
+        return itens;
     }
 }
